@@ -1,0 +1,30 @@
+<div th:switch="${book}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h2 th:case="null">No book yet!</h2>
+    <div th:case="*">
+        <h2>Book</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ISBN</th>
+                <th></th>
+                <th>Title</th>
+                <th></th>
+                <th>Publisher</th>
+                <th></th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${book}">
+                <td th:text="${book.ISBN}"></td>
+                <td th:text="${book.Title}"></td>
+                <td th:text="${book.Publisher}"></td>
+                <td><a th:href="@{/edit/{id}(id=${book.Id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${book.Id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/signup">Add a new user</a></p>
+</div>
